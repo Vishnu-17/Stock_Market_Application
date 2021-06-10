@@ -3,6 +3,7 @@ package com.vishnu.StockMarketApplication.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
