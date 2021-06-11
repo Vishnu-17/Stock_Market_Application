@@ -1,0 +1,46 @@
+<app-home></app-home>
+<button [routerLink]="['/companies']" routerLinkActive="router-link-active" class="btn btn-primary">Back to List of Companies</button>
+
+
+
+
+<div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" >
+    <div class="card-body">
+        <h5 class="card-title">Enter the Details of the Company</h5>
+<form #addcompany = "ngForm" (ngSubmit)="onClickSubmit(addcompany.value)">
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" placeholder="Company Name" #name="ngModel"  [(ngModel)]="company.name">
+    </div>
+    <br>
+    <div class="form-group">
+        <input type="text"  class="form-control" name="code" placeholder="Company Code"  #code="ngModel" [(ngModel)]="company.code">
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="text" class="form-control" name="turnover" placeholder="Company Turnover"  #turnover="ngModel" [(ngModel)]="company.turnover">
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="text" class="form-control" name="ceo" placeholder="Chief Executive Officer"  #ceo="ngModel" [(ngModel)]="company.ceo">
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="text" class="form-control" name="boardOfDirectors" placeholder="Board of Directors(separated by comma)"  #boardOfDirectors="ngModel" [(ngModel)]="company.boardOfDirectors">
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="text" class="form-control" name="stockExchangeNames" placeholder="Stock Exchanges(separated by comma)"  #stockExchangeNames="ngModel" [(ngModel)]="company.stockExchangeNames">
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="text" class="form-control" name="sectorName" placeholder="Sector Name"  #sectorName="ngModel" [(ngModel)]="company.sectorName">
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="text" class="form-control" name="description" placeholder="Company Description"  #description="ngModel" [(ngModel)]="company.description">
+      </div>
+      <br>
+    <button type="submit" class="form-control" value="submit">Submit</button>
+  </form>
+</div>
+</div>

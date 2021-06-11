@@ -1,0 +1,25 @@
+
+<app-home></app-home>
+
+<button [routerLink]="['/create-sector']" routerLinkActive="router-link-active" class="btn btn-primary">
+    Create Sector
+</button>
+
+<table class="table table-striped">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Sector Name</th>
+        <th>Description</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sector of sectors">
+        <td>{{ sector.name }}</td>
+        <td>{{ sector.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  

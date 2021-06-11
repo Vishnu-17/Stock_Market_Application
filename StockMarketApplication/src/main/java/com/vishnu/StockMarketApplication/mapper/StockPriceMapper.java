@@ -12,7 +12,7 @@ import com.vishnu.StockMarketApplication.model.StockPrice;
 
 @Component
 public class StockPriceMapper {
-	public StockPriceDto toStockExchangeDto(StockPrice stockPrice) {
+	public StockPriceDto toStockPriceDto(StockPrice stockPrice) {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return mapper.map(stockPrice, StockPriceDto.class);
@@ -24,7 +24,7 @@ public class StockPriceMapper {
 		return mapper.map(stockPriceDto,StockPrice.class);
 	}
 	
-	public List<StockPriceDto> toStockExchangeDtos(List<StockPrice> stockPrices){
+	public List<StockPriceDto> toStockPriceDtos(List<StockPrice> stockPrices){
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return Arrays.asList(mapper.map(stockPrices, StockPriceDto[].class));

@@ -1,0 +1,22 @@
+<app-home></app-home>
+
+<button [routerLink]="['/create-ipo']" routerLinkActive="router-link-active" class="btn btn-primary">Create New IPO</button>
+
+<table class="table table-striped">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Company Name</th>
+        <th>Stock Exchange</th>
+        <th>Price per Share</th>
+        <th>Total Shares</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ipo of ipos">
+        <td>{{ ipo.companyName }}</td>
+        <td>{{ ipo.stockExchangeName}}</td>
+        <td>{{ ipo.price}}</td>
+        <td>{{ ipo.shares}}</td>
+      </tr>
+    </tbody>
+  </table>

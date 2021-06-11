@@ -22,7 +22,7 @@ public class StockPriceImpl implements StockPriceService{
 	
 	@Override
 	public List<StockPriceDto> getAllStockPrices() {
-		return stockPriceMapper.toStockExchangeDtos(stockPriceRepository.findAll());
+		return stockPriceMapper.toStockPriceDtos(stockPriceRepository.findAll());
 	}
 	
 	@Override
@@ -31,14 +31,14 @@ public class StockPriceImpl implements StockPriceService{
 		if(!stockPrice.isPresent()) {
 			return null;
 		}
-		return stockPriceMapper.toStockExchangeDto(stockPrice.get());
+		return stockPriceMapper.toStockPriceDto(stockPrice.get());
 	}
 
 	@Override
 	public StockPriceDto addStockPrice(StockPriceDto stockPriceDto) {
 		StockPrice stockPrice = stockPriceMapper.toStockPrice(stockPriceDto);
 		stockPrice = stockPriceRepository.save(stockPrice);
-		return stockPriceMapper.toStockExchangeDto(stockPrice);
+		return stockPriceMapper.toStockPriceDto(stockPrice);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class StockPriceImpl implements StockPriceService{
 		}
 		StockPrice stockPrice = stockPriceMapper.toStockPrice(stockPriceDto);
 		stockPrice = stockPriceRepository.save(stockPrice);
-		return stockPriceMapper.toStockExchangeDto(stockPrice);
+		return stockPriceMapper.toStockPriceDto(stockPrice);
 	}
 
 	@Override

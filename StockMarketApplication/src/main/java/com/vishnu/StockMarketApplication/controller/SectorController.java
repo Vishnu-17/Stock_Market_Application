@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vishnu.StockMarketApplication.dto.CompanyDto;
 import com.vishnu.StockMarketApplication.dto.SectorDto;
 import com.vishnu.StockMarketApplication.service.SectorService;
 
 @RestController
 @RequestMapping("/sector")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class SectorController {
 
 	@Autowired
@@ -48,5 +49,10 @@ public class SectorController {
 	@DeleteMapping("/{id}")
 	public void deleteSectorById(@PathVariable String id) {
 		sectorService.deleteById(id);
+	}
+	
+	@PostMapping("/{sectorName}/companies")
+	public void addCompanyToSector(@PathVariable String sectorName,CompanyDto companyDto) {
+		sectorService.addCompanyToSector(sectorName, companyDto);
 	}
 }

@@ -1,6 +1,10 @@
 package com.vishnu.StockMarketApplication.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -21,4 +25,10 @@ public class Company {
 	private String stockExchangeNames;
 	private String sectorName;
 	private String description;
+	
+	@DBRef
+	private List<Ipo> ipos = new ArrayList<>();
+	
+	@DBRef
+	private List<StockPrice> stockPrices = new ArrayList<>();
 }

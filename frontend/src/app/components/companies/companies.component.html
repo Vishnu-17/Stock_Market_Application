@@ -1,0 +1,25 @@
+
+<app-home></app-home>
+
+
+<button [routerLink]="['/create-company']" routerLinkActive="router-link-active" type="button" class="btn btn-primary">
+    Click here to create add new Company
+</button>
+
+
+<div class="row">
+        <div class="column">
+            <div class="card" style="width: 18rem;" *ngFor="let stock of companies">
+
+                <div class="card-body">
+                  <h5 class="card-title">{{stock.id}}</h5>
+                  <br>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">{{stock.ceo}}</li>
+                  <li class="list-group-item">{{stock.code}}</li>
+                  <li class="list-group-item">{{stock.turnover}}</li>
+                </ul>      
+            </div>
+        </div>
+</div>

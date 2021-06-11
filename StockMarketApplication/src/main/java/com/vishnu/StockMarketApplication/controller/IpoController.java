@@ -19,7 +19,7 @@ import com.vishnu.StockMarketApplication.service.IpoService;
 
 @RestController
 @RequestMapping("/ipo")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class IpoController {
 
 	@Autowired

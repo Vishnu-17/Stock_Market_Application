@@ -8,4 +8,6 @@ import com.vishnu.StockMarketApplication.model.StockExchange;
 @Repository
 public interface StockExchangeRepository extends MongoRepository<StockExchange, String>{
 
+	StockExchange findByName(String stockExchangeName);
+
 }

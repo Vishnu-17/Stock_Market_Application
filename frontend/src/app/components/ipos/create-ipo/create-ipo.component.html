@@ -1,0 +1,33 @@
+<app-home></app-home>
+<button [routerLink]="['/ipos']" routerLinkActive="router-link-active" class="btn btn-primary">
+    Back to List of IPOs
+</button>
+
+<div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" >
+    <div class="card-body">
+        <h5 class="card-title">Add IPO</h5>
+<form #addIpo="ngForm" (ngSubmit)="onClickSubmit(addIpo.value)">
+    <div class="form-group">
+        <input type="text" class="form-control" name="companyName" placeholder="Company Name" #companyName = "ngModel" [(ngModel)]="ipo.companyName">
+      </div>
+      <br>
+
+    <div class="form-group">
+      <input type="text" class="form-control" name="stockExchangeName" placeholder="Stock Exchange Name" #stockExchangeName="ngModel" [(ngModel)]="ipo.stockExchangeName">
+    </div>
+    <br>
+    
+      <div class="form-group">
+          <label>Price per Share</label>
+        <input type="number" class="form-control" name="price" placeholder="0" #price="ngModel" [(ngModel)]="ipo.price">
+      </div>
+      <br>
+      <div class="form-group">
+          <label>Shares</label>
+        <input type="number" class="form-control" name="shares" placeholder="0" #shares="ngModel" [(ngModel)]="ipo.shares">
+      </div>
+      <br>
+    <button type="submit" value ="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</div>

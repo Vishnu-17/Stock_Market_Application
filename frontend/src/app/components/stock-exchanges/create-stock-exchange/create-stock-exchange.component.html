@@ -1,0 +1,29 @@
+<app-home></app-home>
+<button [routerLink]="['/stock-exchanges']" routerLinkActive="router-link-active" class="btn btn-primary">
+    Back to List of Sectors
+</button>
+
+<div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" >
+    <div class="card-body">
+        <h5 class="card-title">Add Stock Exchange</h5>
+<form #addstockexchange="ngForm" (ngSubmit)="onClickSubmit(addstockexchange.value)">
+    <div class="form-group">
+      <input type="text" class="form-control" name="name" placeholder="Stock Exchange Name" #name="ngModel" [(ngModel)]="stockexchange.name">
+    </div>
+    <br>
+    <div class="form-group">
+        <input type="text" class="form-control" name="description" placeholder="Stock Exchange Description" #description="ngModel" [(ngModel)]="stockexchange.description">
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="text" class="form-control" name="address" placeholder="Contact Address" #address="ngModel" [(ngModel)]="stockexchange.address">
+      </div>
+      <br>
+      <div class="form-group">
+        <input type="text" class="form-control" name="remarks" placeholder="Remarks" #remarks="ngModel" [(ngModel)]="stockexchange.remarks">
+      </div>
+      <br>
+    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+  </form>
+</div>
+</div>

@@ -7,5 +7,7 @@ import com.vishnu.StockMarketApplication.model.Sector;
 
 @Repository
 public interface SectorRepository extends MongoRepository<Sector, String>{
+
+	Sector findByName(String sectorName);
 	
 }

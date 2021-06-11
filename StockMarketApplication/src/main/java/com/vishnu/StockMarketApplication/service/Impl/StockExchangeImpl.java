@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vishnu.StockMarketApplication.dao.StockExchangeRepository;
+import com.vishnu.StockMarketApplication.dto.CompanyDto;
 import com.vishnu.StockMarketApplication.dto.StockExchangeDto;
+import com.vishnu.StockMarketApplication.mapper.CompanyMapper;
 import com.vishnu.StockMarketApplication.mapper.StockExchangeMapper;
 import com.vishnu.StockMarketApplication.model.StockExchange;
 import com.vishnu.StockMarketApplication.service.StockExchangeService;
@@ -19,6 +21,9 @@ public class StockExchangeImpl implements StockExchangeService{
 	
 	@Autowired
 	private StockExchangeMapper stockExchangeMapper;
+	
+	@Autowired
+	private CompanyMapper companyMapper;
 	
 	@Override
 	public List<StockExchangeDto> getAllStockExchanges() {
@@ -54,6 +59,26 @@ public class StockExchangeImpl implements StockExchangeService{
 	@Override
 	public void deleteById(String id) {
 		stockExchangeRepository.deleteById(id);
+	}
+
+	@Override
+	public List<CompanyDto> getCompanies(String id) {
+		Optional<StockExchange> stockExchange = stockExchangeRepository.findById(id);
+		if(!stockExchange.isPresent()) {
+			return null;
+		}
+		return companyMapper.toCompanyDtos(stockExchange.get().getCompanies());
+	}
+
+	@Override
+	public StockExchangeDto addCompanyToStockExchange(String stockExchangeName, CompanyDto companyDto) {
+		StockExchange stockExchange = stockExchangeRepository.findByName(stockExchangeName);
+		if(stockExchange == null) {
+			return null;
+		}
+		stockExchange.getCompanies().add(companyMapper.toCompany(companyDto));
+		stockExchange = stockExchangeRepository.save(stockExchange);
+		return stockExchangeMapper.toStockExchangeDto(stockExchange);
 	}
 
 	

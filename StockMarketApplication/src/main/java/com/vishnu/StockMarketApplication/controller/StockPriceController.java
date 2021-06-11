@@ -19,13 +19,13 @@ import com.vishnu.StockMarketApplication.service.StockPriceService;
 
 @RestController
 @RequestMapping("/stock-price")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class StockPriceController {
 
 	@Autowired
 	private StockPriceService stockPriceService;
 	
-	@GetMapping("/companies")
+	@GetMapping("/stock-prices")
 	public ResponseEntity<List<StockPriceDto>> getAllStockPrices(){
 		return ResponseEntity.ok(stockPriceService.getAllStockPrices());
 	}

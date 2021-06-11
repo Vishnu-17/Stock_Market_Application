@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vishnu.StockMarketApplication.dto.CompanyDto;
 import com.vishnu.StockMarketApplication.dto.StockExchangeDto;
 import com.vishnu.StockMarketApplication.service.StockExchangeService;
 
 @RestController
 @RequestMapping("/stock-exchange")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 public class StockExchangeController {
 
 	@Autowired
@@ -48,5 +49,16 @@ public class StockExchangeController {
 	@DeleteMapping("/{id}")
 	public void deleteStockExchangeById(@PathVariable String id) {
 		stockExchangeService.deleteById(id);
+	}
+	
+	@GetMapping(path = "/{id}/companies")
+	public ResponseEntity<List<CompanyDto>> getCompanies(@PathVariable String id) {
+		List<CompanyDto> companyDtos = stockExchangeService.getCompanies(id);
+		return ResponseEntity.ok(companyDtos);
+	}
+	
+	@PostMapping(path = "/{stockExchangeName}/companies")
+	public void addCompanyToStockExchange(@PathVariable String stockExchangeName, @RequestBody CompanyDto companyDto) {
+		StockExchangeDto stockExchangeDto = stockExchangeService.addCompanyToStockExchange(stockExchangeName, companyDto);
 	}
 }

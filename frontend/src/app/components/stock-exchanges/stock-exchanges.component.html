@@ -1,0 +1,26 @@
+<app-home></app-home>
+
+<button [routerLink]="['/create-stock-exchange']" routerLinkActive="router-link-active" class="btn btn-primary">Create New Stock Exchange</button>
+
+<table class="table table-striped">
+    <thead class="thead-inverse thead-dark">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Contact Address</th>
+        <th>Remarks</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stockExchange of stockExchanges">
+        <td>{{ stockExchange.name }}</td>
+        <td>{{ stockExchange.description }}</td>
+        <td>{{ stockExchange.address }}</td>
+        <td>{{ stockExchange.remarks }}</td>
+       
+      </tr>
+    </tbody>
+  </table>
+  
