@@ -26,7 +26,7 @@ public class CompanyMapper {
 	public List<CompanyDto> toCompanyDtos(List<Company> companies){
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		return Arrays.asList(mapper.map(companies, CompanyDto.class));
+		return Arrays.asList(mapper.map(companies, CompanyDto[].class));
 	}
 	
 }

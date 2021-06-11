@@ -28,6 +28,6 @@ public class SectorMapper {
 	public List<SectorDto> toSectorDtos(List<Sector> sectors){
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		return Arrays.asList(mapper.map(sectors, SectorDto.class));
+		return Arrays.asList(mapper.map(sectors, SectorDto[].class));
 	}
 }

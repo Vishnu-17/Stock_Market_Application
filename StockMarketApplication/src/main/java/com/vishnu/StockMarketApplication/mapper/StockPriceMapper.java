@@ -27,6 +27,6 @@ public class StockPriceMapper {
 	public List<StockPriceDto> toStockExchangeDtos(List<StockPrice> stockPrices){
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		return Arrays.asList(mapper.map(stockPrices, StockPriceDto.class));
+		return Arrays.asList(mapper.map(stockPrices, StockPriceDto[].class));
 	}
 }

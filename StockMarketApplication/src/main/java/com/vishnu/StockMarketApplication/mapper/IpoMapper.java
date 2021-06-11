@@ -27,6 +27,6 @@ public class IpoMapper {
 	public List<IpoDto> toIpoDtos(List<Ipo> ipos){
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		return Arrays.asList(mapper.map(ipos, IpoDto.class));
+		return Arrays.asList(mapper.map(ipos, IpoDto[].class));
 	}
 }
