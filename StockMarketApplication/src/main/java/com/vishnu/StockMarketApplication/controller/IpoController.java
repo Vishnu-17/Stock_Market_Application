@@ -40,9 +40,9 @@ public class IpoController {
 		return ResponseEntity.ok(ipoService.addIpo(ipoDto));
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<IpoDto> editIpo(@RequestBody IpoDto ipoDto){
-		return ResponseEntity.ok(ipoService.updateIpo(ipoDto));
+	@PutMapping("/{id}")
+	public ResponseEntity<IpoDto> editIpo(@RequestBody IpoDto ipoDto,@PathVariable String id){
+		return ResponseEntity.ok(ipoService.updateIpo(ipoDto,id));
 	}
 	
 	@DeleteMapping("/{id}")

@@ -7,19 +7,23 @@
 </button>
 
 
-<div class="row">
-        <div class="column">
-            <div class="card" style="width: 18rem;" *ngFor="let stock of companies">
-
-                <div class="card-body">
-                  <h5 class="card-title">{{stock.id}}</h5>
-                  <br>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">{{stock.ceo}}</li>
-                  <li class="list-group-item">{{stock.code}}</li>
-                  <li class="list-group-item">{{stock.turnover}}</li>
-                </ul>      
-            </div>
-        </div>
-</div>
+<table class="table table-striped table-large">
+  <thead class="thead-inverse thead-dark">
+    <tr>
+      <th>Company Name</th>
+      <th>Stock Exchanges</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of companies; let idx=index">
+      <td>{{ company.name }}</td>
+      <td>{{ company.stockExchangeNames}}</td>
+      <td>{{ company.description}}</td>
+      <td> <a class = "btn btn-warning btn-sm" (click)="editCompany(company)" >edit</a> </td> 
+      <td><button class="btn btn-danger btn-sm" (click)="onDeleteClick(company.id,idx)"> delete </button></td>
+    </tr>
+  </tbody>
+</table>

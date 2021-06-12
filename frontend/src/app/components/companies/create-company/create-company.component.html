@@ -7,7 +7,7 @@
 <div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" >
     <div class="card-body">
         <h5 class="card-title">Enter the Details of the Company</h5>
-<form #addcompany = "ngForm" (ngSubmit)="onClickSubmit(addcompany.value)">
+<form #addcompany = "ngForm">
     <div class="form-group">
       <input type="text" class="form-control" name="name" placeholder="Company Name" #name="ngModel"  [(ngModel)]="company.name">
     </div>
@@ -40,7 +40,8 @@
         <input type="text" class="form-control" name="description" placeholder="Company Description"  #description="ngModel" [(ngModel)]="company.description">
       </div>
       <br>
-    <button type="submit" class="form-control" value="submit">Submit</button>
+      <div *ngIf="!isEdit"><button type="submit" class="form-control btn btn-primary" value="submit" (click)="onClickSubmit(addcompany.value)">Submit</button></div>
+      <div *ngIf="isEdit"><button type="submit" class="form-control btn btn-warning" value="submit" (click)="onClickUpdate(addcompany.value)">Update</button></div>
   </form>
 </div>
 </div>

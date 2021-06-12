@@ -22,4 +22,23 @@ export class SectorService {
       .subscribe(response =>response);
     ;
   }
+
+  deleteSector(id:any){
+    this.http.delete(this.baseUrl+'/sector/'+id)
+    .subscribe(response=>{
+      console.log(response);
+    })
+  }
+
+  updateSector(sector:Sector,id:any){
+    sector.id=id;
+    console.log(this.baseUrl+'/sector/update')
+    return this.http.put(this.baseUrl+'/sector/update',sector)
+    .subscribe(response=>response);
+  }
+
+  getSectorById(id:any){
+    return this.http.get(this.baseUrl+'/sector/'+id)
+  }
+
 }

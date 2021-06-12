@@ -2,7 +2,7 @@
 
 <button [routerLink]="['/create-stock-exchange']" routerLinkActive="router-link-active" class="btn btn-primary">Create New Stock Exchange</button>
 
-<table class="table table-striped">
+<table class="table table-striped table-large">
     <thead class="thead-inverse thead-dark">
       <tr>
         <th>Name</th>
@@ -14,12 +14,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let stockExchange of stockExchanges">
+      <tr *ngFor="let stockExchange of stockExchanges; let idx=index">
         <td>{{ stockExchange.name }}</td>
         <td>{{ stockExchange.description }}</td>
         <td>{{ stockExchange.address }}</td>
         <td>{{ stockExchange.remarks }}</td>
-       
+        <td><a class="btn btn-warning btn-sm" (click)="editStockExchange(stockExchange)">edit</a></td>
+        <td><a class="btn btn-danger btn-sm" (click)="onDeleteClick(stockExchange.id,idx)">delete</a></td>
       </tr>
     </tbody>
   </table>

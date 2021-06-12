@@ -22,4 +22,23 @@ export class IpoService {
       .subscribe(response =>response);
     ;
   }
+
+  deleteIpo(id:any){
+    this.http.delete(this.baseUrl+'/ipo/'+id)
+    .subscribe(response=>{
+      console.log(response);
+    })
+  }
+
+  updateIpo(ipo:IPO,id:any){
+    console.log(ipo)
+    ipo.id = id;
+    console.log(this.baseUrl+'/ipo/'+ipo.id)
+    return this.http.put(this.baseUrl+'/ipo/'+ipo.id,ipo)
+    .subscribe(response=>response);
+  }
+
+  getIpoById(id:any){
+    return this.http.get(this.baseUrl+'/ipo/'+id)
+  }
 }

@@ -3,7 +3,7 @@ import { Company } from '../../models/Company';
 import { StockPrice } from '../../models/StockPrice';
 import { CompanyService } from '../../services/company.service';
 import { StockPriceService } from '../../services/stock-price.service';
-
+import{Router} from '@angular/router'
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
@@ -13,7 +13,7 @@ export class CompaniesComponent implements OnInit {
   stockPrice: StockPrice[];
   companies: Company[];
   
-  constructor(private stockPriceService:StockPriceService,private companyService:CompanyService) { }
+  constructor(private stockPriceService:StockPriceService,private companyService:CompanyService,private router:Router) { }
 
   ngOnInit(): void {
     this.getAllStockPrice();
@@ -34,6 +34,15 @@ getAllCompanies(){
       )
 }
 
+onDeleteClick(id : any,idx:any){
+  this.companyService.deleteCompany(id);
+  this.companies.splice(idx,1);
+}
 
+editCompany(company :Company){
+  window.localStorage.removeItem("editCompanyId");
+  window.localStorage.setItem("editCompanyId", company.id!.toString());
+  this.router.navigate(['/create-company']);
+}
 
 }

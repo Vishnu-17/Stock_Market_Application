@@ -6,7 +6,7 @@
 <div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" >
     <div class="card-body">
         <h5 class="card-title">Add IPO</h5>
-<form #addIpo="ngForm" (ngSubmit)="onClickSubmit(addIpo.value)">
+<form #addIpo="ngForm">
     <div class="form-group">
         <input type="text" class="form-control" name="companyName" placeholder="Company Name" #companyName = "ngModel" [(ngModel)]="ipo.companyName">
       </div>
@@ -27,7 +27,9 @@
         <input type="number" class="form-control" name="shares" placeholder="0" #shares="ngModel" [(ngModel)]="ipo.shares">
       </div>
       <br>
-    <button type="submit" value ="submit" class="btn btn-primary">Submit</button>
+      <div *ngIf="!isEdit"><button type="submit" value="submit" class="btn btn-primary" (click)="onClickSubmit(addIpo.value)">Save</button></div>
+    <div *ngIf="isEdit"><button type="submit" value="submit" class="btn btn-warning" (click)="onClickUpdate(addIpo.value)">update</button></div>
+    
   </form>
 </div>
 </div>

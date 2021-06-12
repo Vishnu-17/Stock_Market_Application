@@ -6,7 +6,7 @@
 <div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" >
     <div class="card-body">
         <h5 class="card-title">Add Stock Exchange</h5>
-<form #addstockexchange="ngForm" (ngSubmit)="onClickSubmit(addstockexchange.value)">
+<form #addstockexchange="ngForm">
     <div class="form-group">
       <input type="text" class="form-control" name="name" placeholder="Stock Exchange Name" #name="ngModel" [(ngModel)]="stockexchange.name">
     </div>
@@ -23,7 +23,9 @@
         <input type="text" class="form-control" name="remarks" placeholder="Remarks" #remarks="ngModel" [(ngModel)]="stockexchange.remarks">
       </div>
       <br>
-    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+      <div *ngIf="!isEdit"><button type="submit" class="btn btn-primary" value="submit" (click) =onClickSubmit(addstockexchange.value)>Submit</button></div>
+      <div *ngIf="isEdit"><button type="submit" class="btn btn-warning" value="submit" (click)= onClickUpdate(addstockexchange.value)>Update</button></div>
+    
   </form>
 </div>
 </div>

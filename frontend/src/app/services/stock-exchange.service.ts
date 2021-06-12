@@ -24,5 +24,21 @@ export class StockExchangeService {
       .subscribe(response =>response);
     ;
   }
+  deleteStockExchange(id : any){
+    this.http.delete(this.baseUrl+'/stock-exchange/'+id)
+      .subscribe(response=>{
+        console.log(response);
+      })
+  }
+
+  updateStockExchange(stockExchange:StockExchange,id:any){
+    stockExchange.id=id;
+    return this.http.put(this.baseUrl+'/stock-exchange/update',stockExchange)
+    .subscribe(response=>response)
+  }
+
+  getStockExchangeById(id : any){
+    return this.http.get(this.baseUrl+'/stock-exchange/'+id)
+  }
 
 }

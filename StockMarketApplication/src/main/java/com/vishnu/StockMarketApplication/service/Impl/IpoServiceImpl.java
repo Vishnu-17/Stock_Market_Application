@@ -43,11 +43,12 @@ public class IpoServiceImpl implements IpoService{
 	}
 
 	@Override
-	public IpoDto updateIpo(IpoDto ipoDto) {
-		if(getIpoById(ipoDto.getId())==null) {
+	public IpoDto updateIpo(IpoDto ipoDto,String id) {
+		if(id==null) {
 			return null;
 		}
 		Ipo ipo = ipoMapper.toIpo(ipoDto);
+		ipo.setId(id);
 		ipo = ipoRepository.save(ipo);
 		return ipoMapper.toIpoDto(ipo);
 	}
