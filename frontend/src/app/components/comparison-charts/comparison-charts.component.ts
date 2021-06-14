@@ -3,6 +3,7 @@ import { StockPriceService } from 'src/app/services/stock-price.service';
 import { Chart, ChartDataSets, ChartHoverOptions, ChartOptions } from 'chart.js';
 import { Color,Label } from 'ng2-charts';
 import { StockPrice } from 'src/app/models/StockPrice';
+import { Comparison } from 'src/app/models/Comparison';
 //import { ChartDataSets } from 'chart.js';
 //import * as CanvasJS from 'canvasjs';
 @Component({
@@ -19,12 +20,19 @@ export class ComparisonChartsComponent implements OnInit {
   chart:any=[];
   chartData:ChartDataSets[];
   chartLabels:Label[];
-  chartOptions:ChartOptions
+  chartOptions:ChartOptions;
+  comparison: Comparison = {
+    code: '',
+    stockExchangeName: '',
+    fromPeriod: '',
+    toPeriod: '',
+    periodicity: ''
+  }
   constructor(private stockPriceService: StockPriceService, private elementRef: ElementRef) { }
 
  
   ngOnInit(): void {
-    this.getAllStockPrices()
+   // this.getAllStockPrices()
     //this.getStock()
    //console.log(this.stockPrices)
   // this.stock=this.stockPrices[0];
@@ -33,6 +41,37 @@ export class ComparisonChartsComponent implements OnInit {
     //console.log(prices)
 
   }
+
+    onClickSubmit(data){
+      console.log(data.from);
+      var fromd = data.from;
+      var tod = data.to;
+      fromd =fromd.split("-").reverse().join("-");
+      tod = tod.split("-").reverse().join("-");
+      console.log(data.stockexchangename)
+      this.stockPriceService.getCompanyStockPrices(fromd,tod,data.companycode,data.stockexchangename)
+      .subscribe(response=>{
+        let prices = response.map(res=>res.price);
+       this.time = response.map(res=>res.time);
+    // console.log(this.prices)
+    console.log(response)
+      console.log(this.time)
+      //loading chart data
+      this.chartData = [
+        {
+          data: prices,
+          label: data.companycode
+        },
+      ]
+
+      this.chartLabels = this.time;
+
+      this.chartOptions = {
+        responsive: true
+      };
+
+    })
+    }
 
 
 
@@ -58,6 +97,7 @@ export class ComparisonChartsComponent implements OnInit {
       };
 
     })
+    
    //   )
  // }
 

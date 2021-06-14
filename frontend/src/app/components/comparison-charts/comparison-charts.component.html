@@ -5,32 +5,32 @@
 <div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" >
     <div class="card-body">
         <h5 class="card-title">Comparison Charts</h5>
-<form>
+<form #compare = "ngForm">
     <div class="form-group">
         <label>Select Stock Exchange</label>
-      <input type="text" class="form-control" id="selectstockexchange" placeholder="">
+      <input type="text" class="form-control" id="selectstockexchange" placeholder="Stock Exchange Name" name="stockexchangename" #stockexchangename="ngModel" [(ngModel)]="comparison.stockExchangeName">
     </div>
     <br>
     <div class="form-group">
-        <input type="text" class="form-control" id="companyname" placeholder="Company Name">
+        <input type="text" class="form-control" id="companyname" placeholder="Company Code" name="companycode" #companycode="ngModel" [(ngModel)]="comparison.code">
       </div>
       <br>
       <div class="form-group">
-          <label>From period (dd-MM-YYYY)</label>
-        <input type="date" class="form-control" id="fromperiod" placeholder="">
+          <label>From period (dd-MM-yyyy)</label>
+        <input type="date" class="form-control" id="fromperiod" placeholder="" name="from" #from="ngModel" [(ngModel)]="comparison.fromPeriod">
       </div>
       <br>
       <div class="form-group">
-        <label>To period (dd-MM-YYYY)</label>
-      <input type="date" class="form-control" id="toperiod" placeholder="">
+        <label>To period (dd-MM-yyyy)</label>
+      <input type="date" class="form-control" id="toperiod" placeholder="" name="to" #to="ngModel" [(ngModel)]="comparison.toPeriod">
     </div>
       <br>
       <div class="form-group">
         <label>Specify Periodicity</label>
-      <input type="number" class="form-control" id="periodicity" placeholder="">
+      <input type="number" class="form-control" id="periodicity" placeholder="" name="periodicity" #periodicity="ngModel" [(ngModel)]="comparison.periodicity">
     </div>
       <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" value="submit" class="btn btn-primary" (click)="onClickSubmit(compare.value)">Submit</button>
   </form>
 </div>
 </div>

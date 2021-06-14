@@ -5,6 +5,7 @@ import { StockPrice } from '../models/StockPrice';
 import { Http } from '@angular/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Comparison } from '../models/Comparison';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,8 +34,22 @@ export class StockPriceService {
     ;
   }
 
+  getStock(from:string,to:string){
+    return this.http.get<StockPrice[]>(this.baseUrl+'/stock-price/'+from+'/'+to)
+  }
+
+
+
   handleError(error: HttpErrorResponse) {
     return throwError(error);
+}
+
+getCompanyStockPrices(fromPeriod:string,toPeriod:string,companyCode:string,stockExchangeName:string) {
+  return this.http.get<StockPrice[]>(this.baseUrl + "/stock-price/compareCompany/"+fromPeriod+"/"+toPeriod+"/"+companyCode+"/"+stockExchangeName);
+}
+
+getSectorStockPrices(fromPeriod:string,toPeriod:string) {
+  return this.http.get<StockPrice[]>(this.baseUrl + "/compareSector/"+fromPeriod+"/"+toPeriod);
 }
 
 }
