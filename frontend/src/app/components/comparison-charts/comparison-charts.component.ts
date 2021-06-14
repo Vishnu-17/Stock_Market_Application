@@ -52,7 +52,7 @@ export class ComparisonChartsComponent implements OnInit {
       this.stockPriceService.getCompanyStockPrices(fromd,tod,data.companycode,data.stockexchangename)
       .subscribe(response=>{
         let prices = response.map(res=>res.price);
-       this.time = response.map(res=>res.time);
+       this.time = response.map(res=>res.date);
     // console.log(this.prices)
     console.log(response)
       console.log(this.time)
@@ -73,13 +73,50 @@ export class ComparisonChartsComponent implements OnInit {
     })
     }
 
+    onClickCompare(data){
+      /*
+      this.chartData.push({
+        data:[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8],
+        label:"trial"
+      })
+      */
+     // this.chartLabels=this.time;
+
+     console.log(data.from);
+     var fromd = data.from;
+     var tod = data.to;
+     fromd =fromd.split("-").reverse().join("-");
+     tod = tod.split("-").reverse().join("-");
+     console.log(data.stockexchangename)
+     this.stockPriceService.getCompanyStockPrices(fromd,tod,data.companycode,data.stockexchangename)
+     .subscribe(response=>{
+       let prices = response.map(res=>res.price);
+      this.time = response.map(res=>res.date);
+      console.log(this.time)
+   // console.log(this.prices)
+   console.log(response)
+     console.log(this.time)
+     //loading chart data
+     this.chartData.push({
+       data:prices,
+       label:data.companycode
+     })
+
+     this.chartLabels = this.time;
+
+     this.chartOptions = {
+       responsive: true
+     };
+
+   })
+    }
 
 
   getAllStockPrices(){
     this.stockPriceService.getAllStockPrice()
     .subscribe(response=>{
         this.prices = response.map(res=>res.price);
-      this.time = response.map(res=>res.time);
+      this.time = response.map(res=>res.date);
     // console.log(this.prices)
       //console.log(time)
       //loading chart data

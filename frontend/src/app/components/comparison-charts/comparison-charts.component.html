@@ -31,11 +31,13 @@
     </div>
       <br>
     <button type="submit" value="submit" class="btn btn-primary" (click)="onClickSubmit(compare.value)">Submit</button>
+    <br>
+    <button type="submit" value="submit" class= "btn btn-warning" (click)="onClickCompare(compare.value)">comp</button>
   </form>
 </div>
 </div>
 
-<div class="chart-wrapper w-50 p-20">
+<div class="chart-wrapper w-50 p-20" style="margin-left: 25%;">
   <canvas baseChart 
       [datasets]="chartData" 
       [labels]="chartLabels"  
