@@ -34,3 +34,19 @@
   </form>
 </div>
 </div>
+
+<div class="chart-wrapper w-50 p-20">
+  <canvas baseChart 
+      [datasets]="chartData" 
+      [labels]="chartLabels"  
+      [legend]="true" 
+       [chartType]="'line'" 
+       [options]="chartOptions"
+      >
+  </canvas>
+</div>   
+ 
+
+
+
+

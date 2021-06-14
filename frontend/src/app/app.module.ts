@@ -31,6 +31,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SectorService} from './services/sector.service';
 import {StockExchangeService} from './services/stock-exchange.service';
 import { IpoService } from './services/ipo.service';
+import { ChartsModule } from 'ng2-charts';
+//import { Chart } from 'chart.js';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +57,8 @@ import { IpoService } from './services/ipo.service';
   ],
   imports: [
     BrowserModule,
-    
+    ChartsModule,
+    //Chart,
     HttpClientModule,
     HttpModule,
     AppRoutingModule,

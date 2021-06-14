@@ -1,15 +1,96 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit,ElementRef } from '@angular/core';
+import { StockPriceService } from 'src/app/services/stock-price.service';
+import { Chart, ChartDataSets, ChartHoverOptions, ChartOptions } from 'chart.js';
+import { Color,Label } from 'ng2-charts';
+import { StockPrice } from 'src/app/models/StockPrice';
+//import { ChartDataSets } from 'chart.js';
+//import * as CanvasJS from 'canvasjs';
 @Component({
   selector: 'app-comparison-charts',
   templateUrl: './comparison-charts.component.html',
   styleUrls: ['./comparison-charts.component.css']
 })
 export class ComparisonChartsComponent implements OnInit {
+  stockPrices : StockPrice[];
+  lineChartData:ChartDataSets[];
+  prices:any=[];
+  time:any=[];
+  stock:StockPrice ;
+  chart:any=[];
+  chartData:ChartDataSets[];
+  chartLabels:Label[];
+  chartOptions:ChartOptions
+  constructor(private stockPriceService: StockPriceService, private elementRef: ElementRef) { }
 
-  constructor() { }
-
+ 
   ngOnInit(): void {
+    this.getAllStockPrices()
+    //this.getStock()
+   //console.log(this.stockPrices)
+  // this.stock=this.stockPrices[0];
+
+ //console.log(this.stockPrices)
+    //console.log(prices)
+
+  }
+
+
+
+  getAllStockPrices(){
+    this.stockPriceService.getAllStockPrice()
+    .subscribe(response=>{
+        this.prices = response.map(res=>res.price);
+      this.time = response.map(res=>res.time);
+    // console.log(this.prices)
+      //console.log(time)
+      //loading chart data
+      this.chartData = [
+        {
+          data: this.prices,
+          label: 'Stock A'
+        },
+      ]
+
+      this.chartLabels = this.time;
+
+      this.chartOptions = {
+        responsive: true
+      };
+
+    })
+   //   )
+ // }
+
+  /*
+getStock(){
+ for(let stocks in this.stockPrices){
+   console.log(stocks)
+ }
+} 
+ 
+lineChartData: ChartDataSets[] = [
+  { data: this.prices , label: 'Stock prices' },
+];
+
+lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'];
+
+lineChartOptions = {
+  responsive: true,
+};
+
+lineChartColors: Color[] = [
+  {
+    borderColor: 'black',
+    backgroundColor: 'rgba(255,255,0,0.28)',
+  },
+];
+
+lineChartLegend = true;
+lineChartPlugins = [];
+lineChartType : ChartType= "line";
+
+  */
+
   }
 
 }
