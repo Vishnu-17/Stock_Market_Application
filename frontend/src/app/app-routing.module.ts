@@ -13,11 +13,15 @@ import { CreateCompanyComponent } from './components/companies/create-company/cr
 import { CreateSectorComponent } from './components/sectors/create-sector/create-sector.component';
 import { CreateStockExchangeComponent } from './components/stock-exchanges/create-stock-exchange/create-stock-exchange.component';
 import { CreateIpoComponent } from './components/ipos/create-ipo/create-ipo.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
 
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path:'',component:LoginButtonComponent},
+  {path:'home',component:LandingComponent},
+  //{path: 'home', component: HomeComponent},
   {path: 'companies', component: CompaniesComponent},
   {path: 'ipos', component: IposComponent},
   {path: 'sectors', component: SectorsComponent},

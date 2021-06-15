@@ -7,7 +7,6 @@
         <h5 class="card-title">Comparison Charts</h5>
 <form #compare = "ngForm">
     <div class="form-group">
-        <label>Select Stock Exchange</label>
       <input type="text" class="form-control" id="selectstockexchange" placeholder="Stock Exchange Name" name="stockexchangename" #stockexchangename="ngModel" [(ngModel)]="comparison.stockExchangeName">
     </div>
     <br>
@@ -30,9 +29,9 @@
       <input type="number" class="form-control" id="periodicity" placeholder="" name="periodicity" #periodicity="ngModel" [(ngModel)]="comparison.periodicity">
     </div>
       <br>
-    <button type="submit" value="submit" class="btn btn-primary" (click)="onClickSubmit(compare.value)">Submit</button>
-    <br>
-    <button type="submit" value="submit" class= "btn btn-warning" (click)="onClickCompare(compare.value)">comp</button>
+    <a type="submit" value="submit" class="btn btn-primary card-link" (click)="onClickSubmit(compare.value)" style="left: 0%;position: absolute;">Submit</a>
+    <a type="submit" value="submit" class= "btn btn-warning card-link" (click)="onClickCompare(compare.value)" style="right: 0%;position: absolute;">compare</a>
+  
   </form>
 </div>
 </div>

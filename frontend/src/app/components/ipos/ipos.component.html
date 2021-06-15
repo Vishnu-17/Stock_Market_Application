@@ -1,6 +1,6 @@
 <app-home></app-home>
 
-<button [routerLink]="['/create-ipo']" routerLinkActive="router-link-active" class="btn btn-primary">Create New IPO</button>
+<button [routerLink]="['/create-ipo']" routerLinkActive="router-link-active" class="btn btn-primary" *ngIf="isAdmin">Create New IPO</button>
 
 <table class="table table-striped table-large">
     <thead class="thead-inverse thead-dark">
@@ -19,8 +19,8 @@
         <td>{{ ipo.stockExchangeName}}</td>
         <td>{{ ipo.price}}</td>
         <td>{{ ipo.shares}}</td>
-        <td><a class="btn btn-warning btn-sm" (click)="editIpo(ipo)">edit</a></td>
-        <td><a class="btn btn-danger btn-sm" (click)="onDeleteClick(ipo.id,idx)">delete</a></td>
+        <td><a class="btn btn-warning btn-sm" *ngIf="isAdmin" (click)="editIpo(ipo)">edit</a></td>
+        <td><a class="btn btn-danger btn-sm" *ngIf="isAdmin" (click)="onDeleteClick(ipo.id,idx)">delete</a></td>
       </tr>
     </tbody>
   </table>

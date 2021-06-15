@@ -32,6 +32,7 @@ import {SectorService} from './services/sector.service';
 import {StockExchangeService} from './services/stock-exchange.service';
 import { IpoService } from './services/ipo.service';
 import { ChartsModule } from 'ng2-charts';
+import { LandingComponent } from './components/landing/landing.component';
 //import { Chart } from 'chart.js';
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ChartsModule } from 'ng2-charts';
     CreateSectorComponent,
     CreateStockExchangeComponent,
     CreateIpoComponent,
+    LandingComponent,
    
   ],
   imports: [

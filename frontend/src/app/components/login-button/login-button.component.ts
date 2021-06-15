@@ -8,8 +8,13 @@ import { AuthService } from '@auth0/auth0-angular';
 export class LoginButtonComponent implements OnInit {
 
   constructor(public auth: AuthService) { }
-
+  isEmailVerified:any = false;
   ngOnInit(): void {
+   // this.auth.loginWithRedirect();
+   this.auth.user$.subscribe(user=>{
+      this.isEmailVerified=user?.email_verified
+   })
+   
   }
   
   loginWithRedirect(): void {

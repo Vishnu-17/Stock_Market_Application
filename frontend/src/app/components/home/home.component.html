@@ -4,16 +4,16 @@
         <li class="navbar-text text-primary">
         <h5>Stock Market Charting</h5> 
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isAdmin">
           <a routerLink="/import-data" class="nav-link" href="#">Import Data</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isAdmin">
           <a routerLink="/companies" class="nav-link">Companies</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="isAdmin">
             <a routerLink="/sectors" class="nav-link" href="#">Sectors</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isAdmin">
             <a routerLink="/stock-exchanges" class="nav-link" href="#">Stock Exchanges</a>
           </li>
           <li class="nav-item">
@@ -26,6 +26,6 @@
             <a routerLink="/login" class="nav-link" href="#"><app-authentication-button></app-authentication-button></a>
           </li>
             <li class="nav-item text-primary" style="margin-top: 10px;margin-left: 250px;" *ngIf="auth.user$ | async as user">
-              Logged in as {{user.name}}  
+              Logged in as {{user.name}} 
       </ul>
   </nav>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { IPO } from 'src/app/models/IPO';
 import { IpoService } from 'src/app/services/ipo.service';
 
@@ -10,10 +11,21 @@ import { IpoService } from 'src/app/services/ipo.service';
 })
 export class IposComponent implements OnInit {
   ipos :IPO[];
-  constructor(private ipoService : IpoService,private router:Router) { }
+  isAdmin:boolean;
+  constructor(private ipoService : IpoService,private router:Router,public auth: AuthService) { }
 
   ngOnInit(): void {
-    this.getAllIPOs()
+    this.getAllIPOs();
+    this.auth.user$.subscribe(user=>{
+      console.log(user);
+      if(user?.profile=="admin"){
+        this.isAdmin = true;
+      }
+      else{
+        this.isAdmin=false;
+      }
+      console.log(this.isAdmin)
+    });
   }
 
   getAllIPOs(){
