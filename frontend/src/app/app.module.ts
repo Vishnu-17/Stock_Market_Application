@@ -33,6 +33,8 @@ import {StockExchangeService} from './services/stock-exchange.service';
 import { IpoService } from './services/ipo.service';
 import { ChartsModule } from 'ng2-charts';
 import { LandingComponent } from './components/landing/landing.component';
+//import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
 //import { Chart } from 'chart.js';
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { LandingComponent } from './components/landing/landing.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+  //  AngularFontAwesomeModule,
     AuthModule.forRoot({
       ...env.auth,
     }),

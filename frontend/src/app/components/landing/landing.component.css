@@ -41,3 +41,7 @@ div {
   .container .btn:hover {
     background-color: black;
   }
+
+  .card{
+    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  }

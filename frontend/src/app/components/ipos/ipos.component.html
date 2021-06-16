@@ -1,7 +1,8 @@
 <app-home></app-home>
 
-<button [routerLink]="['/create-ipo']" routerLinkActive="router-link-active" class="btn btn-primary" *ngIf="isAdmin">Create New IPO</button>
 
+
+<div class="card" style="margin-left: 23%;margin-top: 5%;margin-right: 25%;">
 <table class="table table-striped table-large">
     <thead class="thead-inverse thead-dark">
       <tr>
@@ -24,3 +25,6 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+<button [routerLink]="['/create-ipo']" routerLinkActive="router-link-active" class="btn btn-primary" id="create" *ngIf="isAdmin">Create New IPO</button>
