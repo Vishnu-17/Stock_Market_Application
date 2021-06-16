@@ -1,10 +1,16 @@
-<app-home></app-home>
-<button [routerLink]="['/companies']" routerLinkActive="router-link-active" class="btn btn-primary">Back to List of Companies</button>
+<app-home *ngIf="isAdmin"></app-home>
+<button [routerLink]="['/companies']" routerLinkActive="router-link-active" class="btn btn-primary" *ngIf="isAdmin">Back to List of Companies</button>
+
+<div *ngIf="!isAdmin">
+  <h4>You are not Authorized to access this page</h4>
+  <button class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="router-link-active" >
+  Click to redirect to Homepage
+  </button>
+</div>
 
 
 
-
-<div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" >
+<div class="card" style="width: 50rem; text-align: center; margin-left: 25%;"*ngIf="isAdmin" >
     <div class="card-body">
         <h5 class="card-title">Enter the Details of the Company</h5>
 <form #addcompany = "ngForm">

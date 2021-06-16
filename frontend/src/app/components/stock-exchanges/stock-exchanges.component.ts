@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { StockExchange } from '../../models/StockExchange';
 import { StockExchangeService } from '../../services/stock-exchange.service';
 
@@ -10,10 +11,21 @@ import { StockExchangeService } from '../../services/stock-exchange.service';
 })
 export class StockExchangesComponent implements OnInit {
   stockExchanges : StockExchange[];
-  constructor(private stockExchangeService:StockExchangeService,private router:Router) { }
+  isAdmin:boolean;
+  constructor(private stockExchangeService:StockExchangeService,private router:Router,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.getAllStockExchanges()
+    this.auth.user$.subscribe(user=>{
+      if(user?.profile=="admin"){
+        this.isAdmin = true;
+      }
+      else{
+        this.isAdmin=false;
+      }
+    }
+    //  (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+     );
   }
 
   getAllStockExchanges(){

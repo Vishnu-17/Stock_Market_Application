@@ -1,10 +1,12 @@
 
-<app-home></app-home>
+<app-home *ngIf="isAdmin"></app-home>
 
 
+<div *ngIf="!isAdmin" >
+  <h4>You are not Authorized to Access This Page</h4>
+</div>
 
-
-<div class="card" style="margin-left: 17%;margin-top: 5%;margin-right: 25%;">
+<div class="card" style="margin-left: 17%;margin-top: 5%;margin-right: 25%;" *ngIf="isAdmin">
 <table class="table table-striped table-large" style="width: 1000px;">
   <thead class="thead-inverse thead-dark">
     <tr>
@@ -27,6 +29,8 @@
 </table>
 </div>
 
-<button [routerLink]="['/create-company']" routerLinkActive="router-link-active" type="button" class="btn btn-primary" id="create">
+<button [routerLink]="['/home']" routerLinkActive="router-link-active" *ngIf="!isAdmin" class="btn btn-primary">Click to redirect to the Homepage</button>
+
+<button [routerLink]="['/create-company']" routerLinkActive="router-link-active" type="button" class="btn btn-primary" id="create" *ngIf="isAdmin">
   Add new Company
 </button>

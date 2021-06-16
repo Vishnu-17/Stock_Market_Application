@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { Sector } from 'src/app/models/Sector';
 import { SectorService } from 'src/app/services/sector.service';
 
@@ -10,13 +11,14 @@ import { SectorService } from 'src/app/services/sector.service';
 export class CreateSectorComponent implements OnInit {
   sectorId:string;
   isEdit:boolean;
+  isAdmin:boolean;
   sector:Sector={
     name:'',
     description:''
   };
 
 
-  constructor(private sectorService : SectorService) { }
+  constructor(private sectorService : SectorService,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.sectorId = window.localStorage.getItem("editSectorId")!
@@ -29,6 +31,17 @@ export class CreateSectorComponent implements OnInit {
       this.sector = data;
     })
   }
+
+  this.auth.user$.subscribe(user=>{
+    if(user?.profile=="admin"){
+      this.isAdmin = true;
+    }
+    else{
+      this.isAdmin=false;
+    }
+  }
+  //  (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+   );
   }
 
   onClickSubmit(data){

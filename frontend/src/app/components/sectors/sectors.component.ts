@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { Sector } from '../../models/Sector';
 import { SectorService } from '../../services/sector.service';
 
@@ -10,10 +11,21 @@ import { SectorService } from '../../services/sector.service';
 })
 export class SectorsComponent implements OnInit {
   sectors : Sector[];
-  constructor(private sectorService:SectorService,private router:Router) { }
+  isAdmin:boolean;
+  constructor(private sectorService:SectorService,private router:Router,private auth:AuthService) { }
 
   ngOnInit(): void {
     this.getAllSectors()
+    this.auth.user$.subscribe(user=>{
+      if(user?.profile=="admin"){
+        this.isAdmin = true;
+      }
+      else{
+        this.isAdmin=false;
+      }
+    }
+    //  (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+     );
   }
 
   getAllSectors(){

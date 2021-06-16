@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { Company } from 'src/app/models/Company';
 import { CompanyService } from 'src/app/services/company.service';
 
@@ -11,6 +12,7 @@ export class CreateCompanyComponent implements OnInit {
   //let ompanyId = window.localStorage.getItem("editCompanyId");
   companyId : string;
   isEdit:boolean;
+  isAdmin:boolean;
   company: Company = {
     name: '',
     code: '',
@@ -23,7 +25,7 @@ export class CreateCompanyComponent implements OnInit {
   };
  
 
-  constructor(private companyservice:CompanyService) { }
+  constructor(private companyservice:CompanyService,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.companyId = window.localStorage.getItem("editCompanyId")!
@@ -36,6 +38,16 @@ export class CreateCompanyComponent implements OnInit {
       this.company = data;
     })
   }
+  this.auth.user$.subscribe(user=>{
+    if(user?.profile=="admin"){
+      this.isAdmin = true;
+    }
+    else{
+      this.isAdmin=false;
+    }
+  }
+  //  (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+   );
   }
 
 

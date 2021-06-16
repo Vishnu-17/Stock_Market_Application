@@ -1,8 +1,12 @@
 
-<app-home></app-home>
+<app-home *ngIf="isAdmin"></app-home>
 
+<div *ngIf="!isAdmin">
+  <h4>You Are not Authorized to access this page</h4>
+  <button class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="router-link-active" >Click to redirect to the home page</button>
+</div>
 
-<div class="card" style="margin-left: 25%;margin-top: 5%;margin-right: 25%;">
+<div class="card" style="margin-left: 25%;margin-top: 5%;margin-right: 25%;" *ngIf="isAdmin"> 
 <table class="table table-striped table-large">
     <thead class="thead-inverse thead-dark">
       <tr>
@@ -24,6 +28,6 @@
   
 </div>
 
-<button [routerLink]="['/create-sector']" routerLinkActive="router-link-active" class="btn btn-primary" id="create">
+<button [routerLink]="['/create-sector']" routerLinkActive="router-link-active" class="btn btn-primary" id="create" *ngIf="isAdmin">
   Add new Sector
 </button>

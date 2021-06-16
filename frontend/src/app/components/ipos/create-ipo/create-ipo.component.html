@@ -1,9 +1,17 @@
-<app-home></app-home>
-<button [routerLink]="['/ipos']" routerLinkActive="router-link-active" class="btn btn-primary">
+<app-home *ngIf="isAdmin"></app-home>
+<button [routerLink]="['/ipos']" routerLinkActive="router-link-active" class="btn btn-primary" *ngIf="isAdmin">
     Back to List of IPOs
 </button>
 
-<div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" >
+<div *ngIf="!isAdmin">
+  <h4>You are not Authorized to access this page</h4>
+  <button class="btn btn-primary" [routerLink]="['/home']" routerLinkActive="router-link-active" >
+  Click to redirect to Homepage
+  </button>
+</div>
+
+
+<div class="card" style="width: 50rem; text-align: center; margin-left: 25%;" *ngIf="isAdmin">
     <div class="card-body">
         <h5 class="card-title">Add IPO</h5>
 <form #addIpo="ngForm">

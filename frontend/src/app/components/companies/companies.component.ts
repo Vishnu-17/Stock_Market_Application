@@ -4,6 +4,7 @@ import { StockPrice } from '../../models/StockPrice';
 import { CompanyService } from '../../services/company.service';
 import { StockPriceService } from '../../services/stock-price.service';
 import{Router} from '@angular/router'
+import { AuthService } from '@auth0/auth0-angular';
 @Component({
   selector: 'app-companies',
   templateUrl: './companies.component.html',
@@ -12,12 +13,22 @@ import{Router} from '@angular/router'
 export class CompaniesComponent implements OnInit {
   stockPrice: StockPrice[];
   companies: Company[];
-  
-  constructor(private stockPriceService:StockPriceService,private companyService:CompanyService,private router:Router) { }
+  isAdmin:boolean;
+  constructor(private stockPriceService:StockPriceService,private companyService:CompanyService,private router:Router,public auth:AuthService) { }
 
   ngOnInit(): void {
     this.getAllStockPrice();
     this.getAllCompanies();
+    this.auth.user$.subscribe(user=>{
+      if(user?.profile=="admin"){
+        this.isAdmin = true;
+      }
+      else{
+        this.isAdmin=false;
+      }
+    }
+    //  (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+     );
   }
 
 getAllStockPrice(){
