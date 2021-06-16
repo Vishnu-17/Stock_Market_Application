@@ -2,10 +2,13 @@ package com.vishnu.StockMarketApplication.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import com.vishnu.StockMarketApplication.dto.CompanyDto;
 import com.vishnu.StockMarketApplication.dto.IpoDto;
 import com.vishnu.StockMarketApplication.dto.StockPriceDto;
-
+//@Service
 public interface CompanyService {
 	public List<CompanyDto> getAllCompanies();
 	public CompanyDto addCompany(CompanyDto companyDto);
