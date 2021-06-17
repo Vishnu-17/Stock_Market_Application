@@ -4,6 +4,8 @@ import { Chart, ChartDataSets, ChartHoverOptions, ChartOptions } from 'chart.js'
 import { Color,Label } from 'ng2-charts';
 import { StockPrice } from 'src/app/models/StockPrice';
 import { Comparison } from 'src/app/models/Comparison';
+import { CompanyService } from 'src/app/services/company.service';
+import { Company } from 'src/app/models/Company';
 //import { ChartDataSets } from 'chart.js';
 //import * as CanvasJS from 'canvasjs';
 @Component({
@@ -28,7 +30,8 @@ export class ComparisonChartsComponent implements OnInit {
     toPeriod: '',
     periodicity: ''
   }
-  constructor(private stockPriceService: StockPriceService, private elementRef: ElementRef) { }
+  companies:Company[];
+  constructor(private stockPriceService: StockPriceService, private elementRef: ElementRef,private companyService:CompanyService) { }
 
  
   ngOnInit(): void {
@@ -39,7 +42,15 @@ export class ComparisonChartsComponent implements OnInit {
 
  //console.log(this.stockPrices)
     //console.log(prices)
+      this.getCompanies()
+  }
 
+
+  getCompanies(){
+    this.companyService.getAllCompanies()
+    .subscribe(data=>
+      this.companies=data
+      )
   }
 
     onClickSubmit(data){
@@ -60,7 +71,7 @@ export class ComparisonChartsComponent implements OnInit {
       this.chartData = [
         {
           data: prices,
-          label: data.companycode
+          label: data.companycode+" "+data.stockexchangename
         },
       ]
 
@@ -99,7 +110,7 @@ export class ComparisonChartsComponent implements OnInit {
      //loading chart data
      this.chartData.push({
        data:prices,
-       label:data.companycode
+       label:data.companycode+" "+data.stockexchangename
      })
 
      this.chartLabels = this.time;

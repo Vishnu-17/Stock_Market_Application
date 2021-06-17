@@ -6,14 +6,35 @@
     <div class="card-body">
         <h5 class="card-title">Comparison Charts</h5>
 <form #compare = "ngForm">
-    <div class="form-group">
-      <input type="text" class="form-control" id="selectstockexchange" placeholder="Stock Exchange Name" name="stockexchangename" #stockexchangename="ngModel" [(ngModel)]="comparison.stockExchangeName">
-    </div>
-    <br>
-    <div class="form-group">
-        <input type="text" class="form-control" id="companyname" placeholder="Company Code" name="companycode" #companycode="ngModel" [(ngModel)]="comparison.code">
-      </div>
-      <br>
+  <div class="form-group">
+    <label for="stockExchangeName">Select Stock Exchange</label>
+    <select type="text" 
+    class="form-control" 
+    id="selectstockexchange" 
+    placeholder="Stock Exchange Name" 
+    name="stockexchangename" 
+    #stockexchangename="ngModel" 
+    [(ngModel)]="comparison.stockExchangeName">
+    <option value="BSE">BSE</option>
+    <option value="NSE">NSE</option>
+    </select>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <label for="CompanyName">Select Company</label>
+    <select
+      type="text"
+      class="form-control"
+      name="companycode"
+      #companycode="ngModel"
+      [(ngModel)]="comparison.code"
+      
+      required>
+      <option value={{company.code}} *ngFor="let company of companies">{{company.name}}</option>
+    </select>
+  </div>
+  <br>
       <div class="form-group">
           <label>From period (dd-MM-yyyy)</label>
         <input type="date" class="form-control" id="fromperiod" placeholder="" name="from" #from="ngModel" [(ngModel)]="comparison.fromPeriod">
