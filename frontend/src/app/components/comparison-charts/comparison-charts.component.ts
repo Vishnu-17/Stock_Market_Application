@@ -1,6 +1,6 @@
 import { Component, OnInit,ElementRef } from '@angular/core';
 import { StockPriceService } from 'src/app/services/stock-price.service';
-import { Chart, ChartDataSets, ChartHoverOptions, ChartOptions } from 'chart.js';
+import { Chart, ChartDataSets, ChartHoverOptions, ChartOptions, ChartType } from 'chart.js';
 import { Color,Label } from 'ng2-charts';
 import { StockPrice } from 'src/app/models/StockPrice';
 import { Comparison } from 'src/app/models/Comparison';
@@ -31,6 +31,7 @@ export class ComparisonChartsComponent implements OnInit {
     periodicity: ''
   }
   companies:Company[];
+  public type:ChartType;
   constructor(private stockPriceService: StockPriceService, private elementRef: ElementRef,private companyService:CompanyService) { }
 
  

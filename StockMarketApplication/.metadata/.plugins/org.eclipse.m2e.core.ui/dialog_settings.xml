@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\StockMarketCharting\Stock_Market_Application\StockMarketApplication"/>
 			<item value="D:\StockMarketCharting\Stock_Market_Application"/>
 		</list>
 		<list key="projectNameTemplate">

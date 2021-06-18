@@ -57,13 +57,28 @@
   </form>
 </div>
 </div>
+<br>
+<div class="form-check" style="margin-left: 25%;">
+  <input class="form-check-input" type="radio" name="line" id="flexRadioDefault1" value='line' #line="ngModel" [(ngModel)]="type">
+  <label class="form-check-label" for="flexRadioDefault1">
+    Line Chart
+  </label>
+</div>
+<div class="form-check" style="margin-left: 25%;">
+  <input class="form-check-input" type="radio" name="bar" id="flexRadioDefault2" checked value='bar' #bar="ngModel" [(ngModel)]="type">
+  <label class="form-check-label" for="flexRadioDefault2">
+    Bar Chart
+  </label>
+</div>
+
+<br>
 
 <div class="chart-wrapper w-50 p-20" style="margin-left: 25%;">
   <canvas baseChart 
       [datasets]="chartData" 
       [labels]="chartLabels"  
       [legend]="true" 
-       [chartType]="'line'" 
+       [chartType]="type"
        [options]="chartOptions"
       >
   </canvas>
