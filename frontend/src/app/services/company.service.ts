@@ -42,4 +42,9 @@ export class CompanyService {
   getCompanyById(id : any){
     return this.http.get(this.baseUrl+'/company/'+id)
   }
+
+  getCompanyByName(name:String):Observable<Company[]>{
+      return this.http.get<Company[]>(this.baseUrl+'/company/name/'+name)
+  }
+
 }

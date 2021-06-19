@@ -19,6 +19,7 @@ import com.vishnu.StockMarketApplication.dto.CompanyDto;
 import com.vishnu.StockMarketApplication.dto.IpoDto;
 import com.vishnu.StockMarketApplication.dto.StockPriceDto;
 import com.vishnu.StockMarketApplication.service.CompanyService;
+import com.vishnu.StockMarketApplication.service.StockExchangeService;
 
 @RestController
 @RequestMapping("/company")
@@ -28,9 +29,17 @@ public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
 	
+	@Autowired
+	private StockExchangeService stockExchangeService;
+	
 	@GetMapping("/companies")
 	public ResponseEntity<List<CompanyDto>> getAllCompanies(){
 		return ResponseEntity.ok(companyService.getAllCompanies());
+	}
+	
+	@GetMapping("/name/{name}")
+	public ResponseEntity<List<CompanyDto>> getCompanyByName(@PathVariable String name){
+		return ResponseEntity.ok(companyService.getCompanyByName(name));
 	}
 	
 	@GetMapping("/{id}")
@@ -40,7 +49,8 @@ public class CompanyController {
 	
 	@PostMapping("/add")
 	public ResponseEntity<CompanyDto> addCompany(@RequestBody CompanyDto companyDto){
-		return ResponseEntity.ok(companyService.addCompany(companyDto));
+		ResponseEntity<CompanyDto> result = ResponseEntity.ok(companyService.addCompany(companyDto));
+		return result;
 	}
 	
 	@PutMapping("/update")

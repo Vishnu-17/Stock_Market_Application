@@ -32,6 +32,12 @@ public class CompanyServiceImpl implements CompanyService{
 		List<Company> companies= companyRepository.findAll();
 		return companyMapper.toCompanyDtos(companies);
 	}
+	
+	@Override
+	public List<CompanyDto> getCompanyByName(String name) {
+		List<Company> companies = companyRepository.findByName(name);
+		return companyMapper.toCompanyDtos(companies);
+	}
 
 	@Override
 	public CompanyDto addCompany(CompanyDto companyDto) {
@@ -66,7 +72,8 @@ public class CompanyServiceImpl implements CompanyService{
 
 	@Override
 	public CompanyDto addIpoToCompany(String companyName, IpoDto ipoDto) {
-		Company company = companyRepository.findByName(companyName);
+		List<Company> companies = companyRepository.findByName(companyName);
+		Company company = companies.get(0);
 		if(company==null) {
 			return null;
 		}

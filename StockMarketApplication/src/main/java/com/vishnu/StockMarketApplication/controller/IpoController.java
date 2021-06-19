@@ -26,8 +26,8 @@ public class IpoController {
 	@Autowired
 	private IpoService ipoService;
 	
-	@Autowired 
-	private CompanyService companyService;
+	//@Autowired 
+	//private CompanyService companyService;
 	
 	@GetMapping("/ipos")
 	public ResponseEntity<List<IpoDto>> getAllIpos(){
@@ -46,7 +46,7 @@ public class IpoController {
 		ResponseEntity<IpoDto> result = ResponseEntity.ok(ipoService.addIpo(ipoDto));
 		ipo=result.getBody();
 		ipo2.setId(ipo.getId());
-		companyService.addIpoToCompany(ipoDto.getCompanyName(), ipo2);
+		//companyService.addIpoToCompany(ipoDto.getCompanyName(), ipo2);
 		return result;
 	}
 	

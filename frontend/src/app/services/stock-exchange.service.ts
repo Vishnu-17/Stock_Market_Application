@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Company } from '../models/Company';
 import { StockExchange } from '../models/StockExchange';
 
 @Injectable({
@@ -39,6 +40,11 @@ export class StockExchangeService {
 
   getStockExchangeById(id : any){
     return this.http.get(this.baseUrl+'/stock-exchange/'+id)
+  }
+
+  addCompanyToStockExchange(stockExchangeName:any,company:Company){
+      return this.http.post(this.baseUrl+'/stock-exchange/'+stockExchangeName+'/companies',company)
+      .subscribe(response=>response)
   }
 
 }

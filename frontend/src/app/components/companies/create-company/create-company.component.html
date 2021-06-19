@@ -38,6 +38,21 @@
         <input type="text" class="form-control" name="stockExchangeNames" placeholder="Stock Exchanges(separated by comma)"  #stockExchangeNames="ngModel" [(ngModel)]="company.stockExchangeNames">
       </div>
       <br>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="BSE" id="flexCheckDefault" name="bse" #bse="ngModel" [(ngModel)]="BSE">
+        <label class="form-check-label" for="flexCheckDefault">
+          BSE
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="NSE" id="flexCheckChecked" name="nse" #nse="ngModel" [(ngModel)]="NSE">
+        <label class="form-check-label" for="flexCheckChecked">
+          NSE
+        </label>
+      </div>
+      <br>
+
       <div class="form-group">
         <input type="text" class="form-control" name="sectorName" placeholder="Sector Name"  #sectorName="ngModel" [(ngModel)]="company.sectorName">
       </div>

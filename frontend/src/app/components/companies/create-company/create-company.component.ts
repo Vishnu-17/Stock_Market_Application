@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Company } from 'src/app/models/Company';
 import { CompanyService } from 'src/app/services/company.service';
+import { StockExchangeService } from 'src/app/services/stock-exchange.service';
 
 @Component({
   selector: 'app-create-company',
   templateUrl: './create-company.component.html',
   styleUrls: ['./create-company.component.css']
 })
+
+//2file github repo
+
 export class CreateCompanyComponent implements OnInit {
   //let ompanyId = window.localStorage.getItem("editCompanyId");
   companyId : string;
@@ -23,9 +27,13 @@ export class CreateCompanyComponent implements OnInit {
     sectorName: '',
     description: ''
   };
- 
+ public BSE:String;
+ public NSE:String;
+ bse:string = "NOT";
+ nse:string = "NOT";
+ companies:Company[];
 
-  constructor(private companyservice:CompanyService,public auth:AuthService) { }
+  constructor(private companyservice:CompanyService,public auth:AuthService,private stockExchangeService:StockExchangeService) { }
 
   ngOnInit(): void {
     this.companyId = window.localStorage.getItem("editCompanyId")!
@@ -52,7 +60,19 @@ export class CreateCompanyComponent implements OnInit {
 
 
     onClickSubmit(data){
+      if(this.BSE){
+        this.bse="BSE"
+      }
+      if(this.NSE){
+        this.nse="NSE"
+      }
       this.companyservice.createCompany(data);
+      this.companyservice.getCompanyByName(data.name).subscribe(data=>{
+        this.companies=data 
+        this.stockExchangeService.addCompanyToStockExchange(this.bse,this.companies[0])
+        this.stockExchangeService.addCompanyToStockExchange(this.nse,this.companies[0])
+      }    
+      )
     }
 
     onClickUpdate(data){
