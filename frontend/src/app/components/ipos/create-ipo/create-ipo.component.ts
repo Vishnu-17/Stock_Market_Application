@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { first } from 'rxjs/operators';
 import { IPO } from 'src/app/models/IPO';
+import { CompanyService } from 'src/app/services/company.service';
 import { IpoService } from 'src/app/services/ipo.service';
 
 @Component({
@@ -20,7 +21,7 @@ export class CreateIpoComponent implements OnInit {
     shares:0
   };
 
-  constructor(private ipoService:IpoService,public auth:AuthService) { }
+  constructor(private ipoService:IpoService,public auth:AuthService,private companyService:CompanyService) { }
 
   ngOnInit(): void {
     this.ipoId = window.localStorage.getItem("editIpoId")!
@@ -46,7 +47,9 @@ export class CreateIpoComponent implements OnInit {
   }
 
   onClickSubmit(data){
-    this.ipoService.createIPO(data);
+    this.ipoService.createIPO(data).subscribe(data=>{
+      this.companyService.addIpoToCompany(data.companyName,data)
+    })
   }
 
   onClickUpdate(data){

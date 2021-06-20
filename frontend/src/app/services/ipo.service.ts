@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { IPO } from '../models/IPO';
 
 @Injectable({
@@ -19,8 +20,10 @@ export class IpoService {
     const headers = { 'content-type' : 'application/json' }
     const body = JSON.stringify(ipo);
     return this.http.post<IPO>(this.baseUrl + '/ipo/add',ipo)
-      .subscribe(response =>response);
-    ;
+    .pipe(map((data:any)=>{
+      return data;  
+    })
+    )
   }
 
   deleteIpo(id:any){

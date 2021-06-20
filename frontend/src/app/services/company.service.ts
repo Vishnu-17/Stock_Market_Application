@@ -6,6 +6,7 @@ import { Company } from '../models/Company';
 import {Router} from '@angular/router';
 import { StockPrice } from '../models/StockPrice';
 import { map } from 'rxjs/operators';
+import { IPO } from '../models/IPO';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,11 @@ export class CompanyService {
   addStockPriceToCompany(companyCode:string,stockPrice:StockPrice){
     return this.http.post(this.baseUrl+'/company/'+companyCode+'/stockPrices',stockPrice)
     .subscribe(response=>response)
+  }
+
+  addIpoToCompany(companyName:string,ipo:IPO){
+      return this.http.post(this.baseUrl+'/company/'+companyName+'/ipos',ipo)
+      .subscribe(response=>response)
   }
 
 

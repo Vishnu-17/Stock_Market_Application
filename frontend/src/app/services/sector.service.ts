@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Company } from '../models/Company';
 import { Sector } from '../models/Sector';
 
 @Injectable({
@@ -41,4 +42,8 @@ export class SectorService {
     return this.http.get(this.baseUrl+'/sector/'+id)
   }
 
+  addCompanyToSector(sectorName:string,company:Company){
+    return this.http.post(this.baseUrl+'/sector/'+sectorName+'/companies',company)
+    .subscribe(response=>response)
+  }
 }
