@@ -6,6 +6,7 @@ import * as XLSX from 'xlsx';
 import { StockPrice } from '../models/StockPrice';
 import { StockPrice } from '../models/StockPrice.ts';
 import { StockPriceService } from '../../services/stock-price.service';
+import { CompanyService } from 'src/app/services/company.service';
 @Component({
   selector: 'app-import-data',
   templateUrl: './import-data.component.html',
@@ -23,8 +24,9 @@ export class ImportDataComponent implements OnInit {
   stockExchangeName: string;
   fromDate: string;
   toDate: string;
+  saved:StockPrice[]=[];
 
-  constructor(private stockPriceService: StockPriceService) { }
+  constructor(private stockPriceService: StockPriceService,private companyService:CompanyService) { }
 
   ngOnInit(): void {
   }
@@ -61,7 +63,10 @@ export class ImportDataComponent implements OnInit {
           
         }
         this.stockPrices.push(this.stockPrice);
-        this.stockPriceService.createStockPrice(this.stockPrice);
+     //   this.stockPriceService.createStockPrice(this.stockPrice).subscribe(res=>{
+       //   console.log(res.companyCode)
+        //  this.companyService.addStockPriceToCompany(res.companyCode,res);
+       // })
 
       });
      
@@ -71,6 +76,13 @@ export class ImportDataComponent implements OnInit {
       this.fromDate = this.stockPrices[0].date;
       this.toDate = this.stockPrices[this.numberOfRecords-1].date;
       this.isUploaded = true;
+
+      for(var i=0;i<this.numberOfRecords;i++){
+        this.stockPriceService.createStockPrice(this.stockPrices[i]).subscribe(res=>{
+          console.log(res)
+         this.companyService.addStockPriceToCompany(this.companyCode,res)
+        })
+      }
   }
  
 }

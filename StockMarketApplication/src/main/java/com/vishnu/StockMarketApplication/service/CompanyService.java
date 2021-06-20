@@ -20,4 +20,6 @@ public interface CompanyService {
 	public CompanyDto addStockPriceToCompany(String companyCode, StockPriceDto stockPriceDto);
 	public List<StockPriceDto> getStockPrices(String id);
 	 public List<CompanyDto> getCompanyByName(String name);
+		public List<CompanyDto> getCompanyByCode(String code);
+
 }

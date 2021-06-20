@@ -13,6 +13,6 @@ public interface CompanyRepository extends MongoRepository<Company, String>{
 	@Query("{'name':?0}")
 	public List<Company> findByName(String name);
 
-	Company findByCode(String companyCode);
+	public List<Company> findByCode(String code);
 	
 }

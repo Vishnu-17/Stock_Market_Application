@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Company } from '../models/Company';
 
 import {Router} from '@angular/router';
+import { StockPrice } from '../models/StockPrice';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +24,10 @@ export class CompanyService {
     const headers = { 'content-type' : 'application/json' }
     const body = JSON.stringify(company);
     return this.http.post<Company>(this.baseUrl + '/company/add',company)
-      .subscribe(response =>response);
-    ;
+    .pipe(map((data:any)=>{
+      return data;  
+    })
+    )
   }
 
   deleteCompany(id : any){
@@ -46,5 +50,11 @@ export class CompanyService {
   getCompanyByName(name:String):Observable<Company[]>{
       return this.http.get<Company[]>(this.baseUrl+'/company/name/'+name)
   }
+
+  addStockPriceToCompany(companyCode:string,stockPrice:StockPrice){
+    return this.http.post(this.baseUrl+'/company/'+companyCode+'/stockPrices',stockPrice)
+    .subscribe(response=>response)
+  }
+
 
 }

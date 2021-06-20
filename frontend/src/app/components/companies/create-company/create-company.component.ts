@@ -66,11 +66,14 @@ export class CreateCompanyComponent implements OnInit {
       if(this.NSE){
         this.nse="NSE"
       }
-      this.companyservice.createCompany(data);
+      this.companyservice.createCompany(data).subscribe(res=>{
+        this.stockExchangeService.addCompanyToStockExchange(this.bse,res)
+        this.stockExchangeService.addCompanyToStockExchange(this.nse,res)
+      })
       this.companyservice.getCompanyByName(data.name).subscribe(data=>{
         this.companies=data 
-        this.stockExchangeService.addCompanyToStockExchange(this.bse,this.companies[0])
-        this.stockExchangeService.addCompanyToStockExchange(this.nse,this.companies[0])
+        console.log(this.companies[0])
+       
       }    
       )
     }
