@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Company } from '../models/Company';
 import { Sector } from '../models/Sector';
 
@@ -20,8 +21,10 @@ export class SectorService {
     const headers = { 'content-type' : 'application/json' }
     const body = JSON.stringify(sector);
     return this.http.post<Sector>(this.baseUrl + '/sector/add',sector)
-      .subscribe(response =>response);
-    ;
+    .pipe(map((data:any)=>{
+      return data;  
+    })
+    )
   }
 
   deleteSector(id:any){

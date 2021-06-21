@@ -19,7 +19,5 @@ describe('CreateStockExchangeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+ 
 });

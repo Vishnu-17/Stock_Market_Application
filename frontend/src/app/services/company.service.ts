@@ -13,7 +13,7 @@ import { IPO } from '../models/IPO';
 })
 @Injectable()
 export class CompanyService {
-  private baseUrl = 'http://localhost:8080';
+  public baseUrl = 'http://localhost:8080';
   constructor(private http:HttpClient,private router:Router) { }
 
 

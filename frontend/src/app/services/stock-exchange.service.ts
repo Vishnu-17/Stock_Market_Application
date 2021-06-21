@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Company } from '../models/Company';
 import { StockExchange } from '../models/StockExchange';
 
@@ -22,8 +23,10 @@ export class StockExchangeService {
     const headers = { 'content-type' : 'application/json' }
     const body = JSON.stringify(stockExchange);
     return this.http.post<StockExchange>(this.baseUrl + '/stock-exchange/add/',stockExchange)
-      .subscribe(response =>response);
-    ;
+    .pipe(map((data:any)=>{
+      return data;  
+    })
+    )
   }
   deleteStockExchange(id : any){
     this.http.delete(this.baseUrl+'/stock-exchange/'+id)
