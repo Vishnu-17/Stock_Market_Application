@@ -15,24 +15,24 @@ import { CreateStockExchangeComponent } from './components/stock-exchanges/creat
 import { CreateIpoComponent } from './components/ipos/create-ipo/create-ipo.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
-
+import { AuthGuard } from '@auth0/auth0-angular';
 
 
 const routes: Routes = [
   {path:'',component:LoginButtonComponent},
   {path:'home',component:LandingComponent},
   //{path: 'home', component: HomeComponent},
-  {path: 'companies', component: CompaniesComponent},
-  {path: 'ipos', component: IposComponent},
-  {path: 'sectors', component: SectorsComponent},
-  {path: 'stock-exchanges', component: StockExchangesComponent},
-  {path: 'import-data', component: ImportDataComponent},
-  {path: 'comparison-charts', component: ComparisonChartsComponent},
+  {path: 'companies', component: CompaniesComponent, canActivate:[AuthGuard]},
+  {path: 'ipos', component: IposComponent, canActivate:[AuthGuard]},
+  {path: 'sectors', component: SectorsComponent,canActivate:[AuthGuard]},
+  {path: 'stock-exchanges', component: StockExchangesComponent,canActivate:[AuthGuard]},
+  {path: 'import-data', component: ImportDataComponent,canActivate:[AuthGuard]},
+  {path: 'comparison-charts', component: ComparisonChartsComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
-  {path:'create-company',component:CreateCompanyComponent},
-  {path:'create-sector', component:CreateSectorComponent},
-  {path:'create-stock-exchange', component:CreateStockExchangeComponent},
-  {path:'create-ipo', component:CreateIpoComponent}
+  {path:'create-company',component:CreateCompanyComponent,canActivate:[AuthGuard]},
+  {path:'create-sector', component:CreateSectorComponent,canActivate:[AuthGuard]},
+  {path:'create-stock-exchange', component:CreateStockExchangeComponent,canActivate:[AuthGuard]},
+  {path:'create-ipo', component:CreateIpoComponent,canActivate:[AuthGuard]}
 ];
 
 

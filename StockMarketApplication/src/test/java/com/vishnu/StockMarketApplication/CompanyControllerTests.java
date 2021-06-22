@@ -33,6 +33,7 @@ import com.vishnu.StockMarketApplication.model.Company;
 import com.vishnu.StockMarketApplication.model.Ipo;
 import com.vishnu.StockMarketApplication.model.StockPrice;
 import com.vishnu.StockMarketApplication.service.CompanyService;
+import com.vishnu.StockMarketApplication.service.StockExchangeService;
 
 
 //@SpringBootTest
@@ -44,6 +45,8 @@ public class CompanyControllerTests {
 	ObjectMapper mapper;
 	@MockBean
 	CompanyService companyService;
+	@MockBean
+	StockExchangeService stockExchangeService;
 	
 	List<Ipo> ipos = new ArrayList<Ipo>();
 	List<StockPrice> stockPrices= new ArrayList<StockPrice>();
