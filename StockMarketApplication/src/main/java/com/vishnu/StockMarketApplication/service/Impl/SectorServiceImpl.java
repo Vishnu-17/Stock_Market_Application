@@ -66,6 +66,13 @@ public class SectorServiceImpl implements SectorService{
 		sector = sectorRepository.save(sector);
 		return sectorMapper.toSectorDto(sector);
 	}
+	
+	@Override
+	public List<CompanyDto> getSectorCompany(String sectorName){
+		List<Sector> sectors = sectorRepository.findByName(sectorName);
+		Sector sector = sectors.get(0);
+		return companyMapper.toCompanyDtos(sector.getCompanies());
+	}
 
 
 

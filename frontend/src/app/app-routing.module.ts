@@ -16,6 +16,7 @@ import { CreateIpoComponent } from './components/ipos/create-ipo/create-ipo.comp
 import { LandingComponent } from './components/landing/landing.component';
 import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { AuthGuard } from '@auth0/auth0-angular';
+import { SectorComparisonComponent } from './sector-comparison/sector-comparison.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'stock-exchanges', component: StockExchangesComponent,canActivate:[AuthGuard]},
   {path: 'import-data', component: ImportDataComponent,canActivate:[AuthGuard]},
   {path: 'comparison-charts', component: ComparisonChartsComponent,canActivate:[AuthGuard]},
+  {path:'sector-comparison',component:SectorComparisonComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
   {path:'create-company',component:CreateCompanyComponent,canActivate:[AuthGuard]},
   {path:'create-sector', component:CreateSectorComponent,canActivate:[AuthGuard]},

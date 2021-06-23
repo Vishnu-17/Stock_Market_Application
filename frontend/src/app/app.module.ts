@@ -33,6 +33,7 @@ import {StockExchangeService} from './services/stock-exchange.service';
 import { IpoService } from './services/ipo.service';
 import { ChartsModule } from 'ng2-charts';
 import { LandingComponent } from './components/landing/landing.component';
+import { SectorComparisonComponent } from './sector-comparison/sector-comparison.component';
 //import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 //import { Chart } from 'chart.js';
@@ -57,6 +58,7 @@ import { LandingComponent } from './components/landing/landing.component';
     CreateStockExchangeComponent,
     CreateIpoComponent,
     LandingComponent,
+    SectorComparisonComponent,
    
   ],
   imports: [

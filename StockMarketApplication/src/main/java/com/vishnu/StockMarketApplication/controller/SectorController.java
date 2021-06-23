@@ -55,4 +55,9 @@ public class SectorController {
 	public void addCompanyToSector(@PathVariable String sectorName,@RequestBody CompanyDto companyDto) {
 		sectorService.addCompanyToSector(sectorName, companyDto);
 	}
+	
+	@GetMapping("/{sectorName}/companies")
+	public ResponseEntity<List<CompanyDto>> getSectorCompany(@PathVariable String sectorName){
+		return ResponseEntity.ok(sectorService.getSectorCompany(sectorName));
+	}
 }

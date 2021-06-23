@@ -35,6 +35,12 @@
         <input type="number" class="form-control" name="shares" placeholder="0" #shares="ngModel" [(ngModel)]="ipo.shares">
       </div>
       <br>
+
+      <div class="form-group">
+        <label>To period (dd-MM-yyyy)</label>
+      <input type="date" class="form-control"  placeholder="" name="date" #date="ngModel" [(ngModel)]="ipo.openDateTime">
+    </div>
+
       <div *ngIf="!isEdit"><button type="submit" value="submit" class="btn btn-primary" (click)="onClickSubmit(addIpo.value)">Save</button></div>
     <div *ngIf="isEdit"><button type="submit" value="submit" class="btn btn-warning" (click)="onClickUpdate(addIpo.value)">update</button></div>
     

@@ -49,4 +49,8 @@ export class SectorService {
     return this.http.post(this.baseUrl+'/sector/'+sectorName+'/companies',company)
     .subscribe(response=>response)
   }
+
+  getSectorCompanies(sectorName:string):Observable<Company[]>{
+    return this.http.get<Company[]>(this.baseUrl+'/sector/'+sectorName+'/companies')
+  }
 }

@@ -12,4 +12,5 @@ public interface SectorService {
 	public void deleteById(String id);
 	public SectorDto getSectorById(String id);
 	public SectorDto addCompanyToSector(String sectorName, CompanyDto companyDto);
+	public List<CompanyDto> getSectorCompany(String sectorName);
 }

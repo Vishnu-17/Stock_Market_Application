@@ -18,7 +18,8 @@ export class CreateIpoComponent implements OnInit {
     companyName:'',
     stockExchangeName:'',
     price: 0,
-    shares:0
+    shares:0,
+    openDateTime:''
   };
 
   constructor(private ipoService:IpoService,public auth:AuthService,private companyService:CompanyService) { }
